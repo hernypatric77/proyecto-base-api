@@ -21,14 +21,14 @@ public class Alumno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "{NotEmpty.es}")
     private String nombre;
 
-    @NotEmpty
+    @NotEmpty(message = "{NotEmpty.es}")
     private String apellido;
 
-    @NotEmpty
-    @Email
+    @NotEmpty(message = "{NotEmpty.es}")
+    @Email(message = "{Email.es}")
     private String email;
 
     @Column(name = "create_at")
