@@ -2,13 +2,8 @@ package com.demo.microservicios.commons.alumnos.models.entity;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -34,9 +29,17 @@ public class Alumno {
     @Column(name = "create_at")
     private LocalDateTime createAt;
 
+    @Lob
+    @JsonIgnore
+    private byte[] foto;
+
     @PrePersist
     public void prePeresit() {
         this.createAt = LocalDateTime.now();
+    }
+
+    public Integer getFotoHashCode(){
+        return (this.foto != null)?this.foto.hashCode():null;
     }
 
     @Override
